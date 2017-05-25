@@ -74,7 +74,7 @@ class TelaCardapio extends React.Component {
                 <ListView
                     dataSource={this.state.dataSource}
                     renderRow={ (rowData) =>
-                        <TouchableHighlight onPress={this._onPressButton}>
+                        <TouchableHighlight onPress={() => navigate('Pedidos', {item: rowData.username })}>
                             <View style={{flex: 1}}>
                                 <Text>Usuário '{rowData.username}' tem o nome '{rowData.name}'.</Text>
                             </View>
@@ -92,9 +92,12 @@ class TelaPedidos extends React.Component {
     });
 
     render() {
+        let { params } = this.props.navigation.state;
+        params = "ok";
         return (
             <View>
                 <Text>Lista dos pedidos</Text>
+                <Text>{params.item}</Text>
             </View>
         );
     }
