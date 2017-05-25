@@ -13,7 +13,7 @@ import {
 } from 'react-native';
 import {StackNavigator, TabNavigator} from 'react-navigation';
 
-const url_users = "http://10.11.24.188:7777/users";
+const url_users = "http://192.168.1.9:7777/users";
 
 class TelaCardapio extends React.Component {
 
@@ -60,6 +60,7 @@ class TelaCardapio extends React.Component {
     }
 
     render() {
+
         if (!this.state.loaded) {
             return (
                 <View>
@@ -69,6 +70,9 @@ class TelaCardapio extends React.Component {
                 </View>
             )
         }
+
+        const { navigate } = this.props.navigation;
+
         return (
             <View style={{flex: 1}}>
                 <ListView
@@ -92,12 +96,11 @@ class TelaPedidos extends React.Component {
     });
 
     render() {
-        let { params } = this.props.navigation.state;
-        params = "ok";
+        const { params } = this.props.navigation.state;
         return (
             <View>
                 <Text>Lista dos pedidos</Text>
-                <Text>{params.item}</Text>
+                <Text>{undefined != params ? params.item : "nada"}</Text>
             </View>
         );
     }
